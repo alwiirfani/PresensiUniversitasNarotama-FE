@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logoNarotama from "../../assets/images/logo_unnar.png";
 import { siteConfig } from "@/configs/SiteConfig";
-import { Button } from "../ui/button";
 import NavAuthButton from "./NavAuthButton";
 
 const MainNav = () => {

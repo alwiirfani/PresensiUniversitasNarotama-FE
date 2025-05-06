@@ -13,7 +13,7 @@ const RootLayout = () => {
       )}>
       <div className="relative flex flex-col min-h-dvh bg-background overflow-hidden">
         <SiteHeader />
-        <main className="flex-1">
+        <main className="flex-1 pt-16">
           <Outlet />
         </main>
       </div>

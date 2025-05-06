@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "./views/RootLayout";
 import LoginLayout from "./views/LoginLayout";
+import HomeLayout from "./views/HomeLayout";
 
 const router = createBrowserRouter([
   {
@@ -9,11 +10,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <div className="w-full min-h-screen flex justify-center items-center">
-            <h1>HOME</h1>
-          </div>
-        ),
+        element: <HomeLayout />,
       },
     ],
   },

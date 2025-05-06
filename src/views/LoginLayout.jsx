@@ -59,6 +59,8 @@ const LoginLayout = () => {
       login({
         id: response.data.nim,
         nama: response.data.nama,
+        role: response.data.role,
+        accessToken: response.data.accessToken,
       });
 
       console.log(response.data);
