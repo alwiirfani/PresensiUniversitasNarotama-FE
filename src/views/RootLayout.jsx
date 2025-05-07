@@ -1,7 +1,8 @@
-import SiteHeader from "@/components/SiteHeader";
+import { Outlet } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import PropTypes from "prop-types";
-import { Outlet } from "react-router-dom";
+
+import SiteHeader from "@/components/SiteHeader";
 
 const RootLayout = () => {
   return (

@@ -1,3 +1,4 @@
+import { titleChange } from "@/services/title-manager";
 import React, { useEffect, useState } from "react";
 
 const HomeLayout = () => {
@@ -14,6 +15,8 @@ const HomeLayout = () => {
     }
   }, []);
 
+  // title
+  titleChange("Universitas Narotama");
   return (
     <div className="container">
       <div className="w-full items-center justify-center">

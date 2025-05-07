@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Toaster } from "../components/ui/sonner";
-import LoginForm from "@/components/auth/LoginForm";
+
 import { useAuth } from "@/hooks/AuthHook";
 import { loginAuthMahasiswa } from "@/services/auth/auth-service";
+import { titleChange } from "@/services/title-manager";
+import LoginForm from "@/components/auth/LoginForm";
 
 // Login form schema
 const loginSchema = z.object({
@@ -86,6 +88,8 @@ const LoginLayout = () => {
     toast.warning("Harap perbaiki error pada form sebelum submit");
   };
 
+  // title
+  titleChange("Login - Universitas Narotama");
   return (
     <div className="container w-full min-h-screen flex flex-col justify-center items-center">
       <Toaster position="top-center" richColors />

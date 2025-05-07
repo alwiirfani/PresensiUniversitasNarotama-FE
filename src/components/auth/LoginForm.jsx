@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 const LoginForm = ({ form, isLoading, onSubmit, onError }) => {
   return (
     <Form {...form}>
-      <div className="p-8 border border-border rounded-md w-full max-w-md">
+      <div className="p-8 border border-border rounded-md w-full max-w-md shadow-lg">
         <form
           onSubmit={form.handleSubmit(onSubmit, onError)}
           className="space-y-6">
