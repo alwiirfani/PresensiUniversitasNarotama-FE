@@ -46,7 +46,7 @@ const MobileNav = () => {
 
           <hr className="border-border mb-2 mx-3" />
 
-          <div className="flex w-64 justify-center items-center mt-2 mx-4">
+          <div className="flex w-full justify-center items-center mt-2 px-6">
             <NavAuthButton className={"w-full"} />
           </div>
         </div>

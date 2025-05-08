@@ -1,10 +1,10 @@
-import { useAuth } from "@/hooks/AuthHook";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import { logoutAuth } from "@/services/auth/auth-service";
 import { cn } from "@/lib/utils";
 import PropTypes from "prop-types";
+import { useAuth } from "@/contexts/AuthContext";
 
 const NavAuthButton = ({ className }) => {
   const { user, logout } = useAuth();

@@ -6,10 +6,10 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Toaster } from "../components/ui/sonner";
 
-import { useAuth } from "@/hooks/AuthHook";
 import { loginAuthMahasiswa } from "@/services/auth/auth-service";
 import { titleChange } from "@/services/title-manager";
 import LoginForm from "@/components/auth/LoginForm";
+import { useAuth } from "@/contexts/AuthContext";
 
 // Login form schema
 const loginSchema = z.object({

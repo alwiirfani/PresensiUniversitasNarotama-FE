@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 // Buat context untuk auth context
 const AuthContext = createContext();
@@ -30,4 +30,6 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-export { AuthContext, AuthProvider };
+const useAuth = () => useContext(AuthContext);
+
+export { AuthContext, AuthProvider, useAuth };

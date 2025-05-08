@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "./views/RootLayout";
 import LoginLayout from "./views/LoginLayout";
 import HomeLayout from "./views/HomeLayout";
+import DashboardLayout from "./views/DashboardLayout";
+import ProtectedRoute from "./contexts/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -15,9 +17,9 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          <div className="flex w-full min-h-screen items-center justify-center">
-            <h1 className="text-xl font-bold">Dashboard</h1>
-          </div>
+          <ProtectedRoute>
+            <DashboardLayout />
+          </ProtectedRoute>
         ),
       },
     ],
