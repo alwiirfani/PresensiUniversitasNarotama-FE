@@ -1,6 +1,5 @@
-import DataTable from "@/components/DataTable";
-import Heading from "@/components/Heading";
 import IklanBanner from "@/components/home/IklanBanner";
+import PresensiDosen from "@/components/home/presensiDosen";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { findAllFakultas } from "@/services/fakultas/fakultas-service";
@@ -67,14 +66,14 @@ const HomeLayout = () => {
           </div>
         ) : fakultas.length > 0 ? (
           fakultas.map((fakultas) => (
-            <>
-              <div key={fakultas.id} className="h-32 text-center">
+            <div key={fakultas.id}>
+              <div className="h-32 text-center">
                 <span className="font-bold">Fakultas</span> : {fakultas.nama} -{" "}
                 <span className="font-bold">Prodi</span> :{" "}
                 {fakultas.prodi[0].nama}, {fakultas.prodi[1].nama}
               </div>
               <Separator className="my-6" />
-            </>
+            </div>
           ))
         ) : (
           <p className="text-center">Tidak ada data fakultas.</p>
@@ -83,17 +82,7 @@ const HomeLayout = () => {
 
       {/* tabel kehadiran dosen */}
       <div className="w-full h-52 mb-64 sm:mb-52">
-        <div className="flex flex-col items-center justify-center mb-4 sm:mb-0">
-          <Heading
-            className="flex flex-col items-center justify-center"
-            title="Kehadiran Dosen"
-            description="hari ini"
-          />
-          <Separator className="mt-3 sm:mb-4 w-3/4" />
-        </div>
-        <Heading title="Fakultas" description="Prodi" />
-        <Separator className="my-3" />
-        <DataTable data={[]} columns={[]} searchKey={""} />
+        <PresensiDosen />
       </div>
     </div>
   );
