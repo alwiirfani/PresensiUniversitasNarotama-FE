@@ -10,6 +10,19 @@ const MainNav = () => {
   const { user } = useAuth();
   const location = useLocation();
 
+  const routes = [
+    {
+      href: "/dashboard",
+      label: "Dashboard",
+      active: location.pathname === "/dashboard",
+    },
+    {
+      href: "/presensi",
+      label: "Presensi",
+      active: location.pathname === "/presensi",
+    },
+  ];
+
   return (
     <>
       <nav className="flex items-center justify-between w-full">
@@ -29,26 +42,17 @@ const MainNav = () => {
 
           {user && (
             <div className="items-center justify-center hidden sm:flex gap-4 w-[65%]">
-              <Link
-                to={"/dashboard"}
-                className={cn(
-                  "text-lg font-medium transition-colors hover:text-primary hidden sm:inline-flex",
-                  location.pathname === "/dashboard"
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                )}>
-                Dashboard
-              </Link>
-              <Link
-                to={"/presensi"}
-                className={cn(
-                  "text-lg font-medium transition-colors hover:text-primary hidden sm:inline-flex",
-                  location.pathname === "/presensi"
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                )}>
-                Presensi
-              </Link>
+              {routes.map((route) => (
+                <Link
+                  key={route.href}
+                  to={route.href}
+                  className={cn(
+                    "text-lg font-medium transition-colors hover:text-primary hidden sm:inline-flex",
+                    route.active ? "text-primary" : "text-muted-foreground"
+                  )}>
+                  {route.label}
+                </Link>
+              ))}
             </div>
           )}
         </div>

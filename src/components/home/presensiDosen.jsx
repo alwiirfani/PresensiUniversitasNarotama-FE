@@ -1,5 +1,5 @@
 import { findAllPresensiDosen } from "@/services/presensi-dosen/presensi-dosen-service";
-import { format } from "date-fns";
+import { format, isToday } from "date-fns";
 import React, { useEffect, useState } from "react";
 import PresensiDosenClient from "./presensi-dosen/client";
 
@@ -16,11 +16,15 @@ const PresensiDosen = () => {
         console.log(response.data);
 
         // format data
-        const formattedData = response.data.map((item) => ({
-          nama: item.dosen.nama,
-          tanggal: format(new Date(item.tanggal), "MMMM dd, yyyy"),
-          status: item.status,
-        }));
+        const formattedData = response.data
+          .filter((item) => {
+            item.status === "HADIR" && isToday(new Date(item.tanggal));
+          })
+          .map((item) => ({
+            nama: item.dosen.nama,
+            tanggal: format(new Date(item.tanggal), "MMMM dd, yyyy"),
+            status: item.status,
+          }));
 
         setPresensiDosen(formattedData);
       } catch (error) {
@@ -37,7 +41,7 @@ const PresensiDosen = () => {
       {isLoading ? (
         <div></div>
       ) : (
-        <div className="flex-1 space-y-4 pt-6 p-8">
+        <div className="flex-1 space-y-4 pt-6">
           <PresensiDosenClient data={presensiDosen} />
         </div>
       )}

@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import PropTypes from "prop-types";
 
 import SiteHeader from "@/components/SiteHeader";
+import Footer from "@/components/Footer";
 
 const RootLayout = () => {
   return (
@@ -17,6 +18,7 @@ const RootLayout = () => {
         <main className="flex-1 pt-16">
           <Outlet />
         </main>
+        <Footer />
       </div>
     </div>
   );

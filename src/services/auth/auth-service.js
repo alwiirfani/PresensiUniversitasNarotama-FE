@@ -1,5 +1,8 @@
+import axios from "axios";
 import publicApi from "../axios/public-api-service";
 import verifyApi from "../axios/verify-api-service";
+
+const BASE_URL = import.meta.env.VITE_BASE_BE_URL;
 
 const loginAuthDosen = async (credentials) => {
   try {
@@ -35,18 +38,21 @@ const loginAuthMahasiswa = async (credentials) => {
   }
 };
 
-const logoutAuth = async () => {
+const logoutAuth = async (user) => {
   try {
     // Hapus header authorization
     delete verifyApi.defaults.headers.common["Authorization"];
 
     // Panggil API logout
-    const response = await verifyApi.delete("/auth/logout", {
-      withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${verifyApi.defaults.headers.common["Authorization"]}`,
-      },
-    });
+    const response = await axios.delete(
+      `${BASE_URL}/auth/logout/${user.accessToken}`,
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      }
+    );
 
     return response.data;
   } catch (error) {

@@ -9,14 +9,12 @@ const PresensiDosenClient = ({ data }) => {
     <div className="items-center justify-center">
       <div className="flex flex-col items-center justify-center mb-4 sm:mb-0">
         <Heading
-          className="flex flex-col items-center justify-center"
+          className="flex flex-col items-center justify-center mb-3"
           title="Kehadiran Dosen"
           description="hari ini"
         />
-        <Separator className="mt-3 sm:mb-4 w-3/4" />
+        <Separator className="w-3/4" />
       </div>
-      <Heading title="Fakultas" description="Prodi" />
-      <Separator className="my-3" />
       <DataTable data={data} columns={columns} searchKey={"nama"} />
     </div>
   );

@@ -58,30 +58,8 @@ const HomeLayout = () => {
         <IklanBanner />
       </div>
 
-      {/* test get data fakultas */}
-      <div className="w-full h-52 mt-16">
-        {isLoading ? (
-          <div className="flex items-center justify-center">
-            <Skeleton className={"w-[47%] h-7 bg-gray-300"} />
-          </div>
-        ) : fakultas.length > 0 ? (
-          fakultas.map((fakultas) => (
-            <div key={fakultas.id}>
-              <div className="h-32 text-center">
-                <span className="font-bold">Fakultas</span> : {fakultas.nama} -{" "}
-                <span className="font-bold">Prodi</span> :{" "}
-                {fakultas.prodi[0].nama}, {fakultas.prodi[1].nama}
-              </div>
-              <Separator className="my-6" />
-            </div>
-          ))
-        ) : (
-          <p className="text-center">Tidak ada data fakultas.</p>
-        )}
-      </div>
-
       {/* tabel kehadiran dosen */}
-      <div className="w-full h-52 mb-64 sm:mb-52">
+      <div className="w-full h-52 mt-14 mb-64 sm:mb-52">
         <PresensiDosen />
       </div>
     </div>
