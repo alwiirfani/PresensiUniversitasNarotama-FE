@@ -1,15 +1,35 @@
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
-import { Menu } from "lucide-react";
+import { Calendar1, LayoutDashboard, Menu } from "lucide-react";
 import { Button } from "../ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import logoNarotama from "../../assets/images/logo_unnar.png";
 import { siteConfig } from "@/configs/SiteConfig";
 import NavAuthButton from "./NavAuthButton";
+import { useAuth } from "@/contexts/AuthContext";
+import { Separator } from "../ui/separator";
 
 const MobileNav = () => {
+  const { user } = useAuth();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
+
+  const routes = [
+    {
+      href: "/dashboard",
+      icon: <LayoutDashboard className="h-4 w-4" />,
+      label: "Dashboard",
+      active: location.pathname === "/dashboard",
+    },
+    {
+      href: "/presensi",
+      icon: <Calendar1 className="h-4 w-4" />,
+      label: "Presensi",
+      active: location.pathname === "/presensi",
+    },
+  ];
+
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
@@ -40,8 +60,21 @@ const MobileNav = () => {
         <hr className="border-border mb-2 mx-3" />
 
         <div className=" flex flex-col h-full">
-          <div className="flex flex-col h-[85%] gap-2 mt-10">
-            <div className=" flex flex-row"></div>
+          <div className="flex flex-col h-[85%] gap-3">
+            {user &&
+              routes.map((route) => (
+                <div
+                  key={route.href}
+                  className="flex flex-row gap-2 items-center justify-center mx-3 p-2 border border-border rounded-lg">
+                  {route.icon}
+                  <MobileLink
+                    to={route.href}
+                    onOpenChange={setOpen}
+                    className={"text-base font-medium"}>
+                    {route.label}
+                  </MobileLink>
+                </div>
+              ))}
           </div>
 
           <hr className="border-border mb-2 mx-3" />

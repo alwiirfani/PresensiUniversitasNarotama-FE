@@ -1,15 +1,10 @@
 import IklanBanner from "@/components/home/IklanBanner";
 import PresensiDosen from "@/components/home/presensiDosen";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
-import { findAllFakultas } from "@/services/fakultas/fakultas-service";
 import { titleChange } from "@/services/title-manager";
 import { useEffect, useState } from "react";
 
 const HomeLayout = () => {
   const [user, setUser] = useState({});
-  const [fakultas, setFakultas] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -20,20 +15,6 @@ const HomeLayout = () => {
 
       console.log(parsedUser);
     }
-
-    const manyFakultas = async () => {
-      try {
-        const response = await findAllFakultas();
-        setFakultas(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching fakultas:", error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    manyFakultas();
   }, []);
 
   // title

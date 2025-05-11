@@ -4,6 +4,7 @@ import LoginLayout from "./views/LoginLayout";
 import HomeLayout from "./views/HomeLayout";
 import DashboardLayout from "./views/DashboardLayout";
 import ProtectedRoute from "./contexts/ProtectedRoute";
+import ErrorNotFoundLayout from "./views/errors/ErrorNotFoundLayout";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginLayout />,
+  },
+  {
+    path: "*",
+    element: <ErrorNotFoundLayout />,
   },
 ]);
 
