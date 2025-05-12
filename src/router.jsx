@@ -5,6 +5,8 @@ import HomeLayout from "./views/HomeLayout";
 import DashboardLayout from "./views/DashboardLayout";
 import ProtectedRoute from "./contexts/ProtectedRoute";
 import ErrorNotFoundLayout from "./views/errors/ErrorNotFoundLayout";
+import PresensiLayout from "./views/PresensiLayout";
+import ProfileLayout from "./views/ProfileLayout";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <DashboardLayout />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/presensi",
+        element: (
+          <ProtectedRoute>
+            <PresensiLayout />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <ProtectedRoute>
+            <ProfileLayout />
           </ProtectedRoute>
         ),
       },

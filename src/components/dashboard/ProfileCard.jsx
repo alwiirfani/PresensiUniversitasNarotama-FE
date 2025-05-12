@@ -9,15 +9,16 @@ import {
 } from "../ui/card";
 import { Button } from "../ui/button";
 import { CircleUserRound } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const ProfileCard = ({ nama }) => {
+const ProfileCard = ({ nama, role }) => {
   return (
     <Card className="w-[350px] h-[170px] hover:bg-slate-100">
       <CardHeader>
         <div className="flex w-full justify-between">
           <div className="flex flex-col justify-center">
-            <CardTitle>Profil anda</CardTitle>
-            <CardDescription>Nama: {nama}</CardDescription>
+            <CardTitle>{nama}</CardTitle>
+            <CardDescription>{role}</CardDescription>
           </div>
 
           <img
@@ -28,11 +29,13 @@ const ProfileCard = ({ nama }) => {
         </div>
       </CardHeader>
       <CardFooter className="flex justify-center">
-        <Button
-          className="hover:bg-border border-2 border-border w-full"
-          variant="outline">
-          <CircleUserRound /> Profil
-        </Button>
+        <Link to={"/profile"} className="w-full">
+          <Button
+            className="hover:bg-border border-2 border-border w-full"
+            variant="outline">
+            <CircleUserRound /> Profil
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

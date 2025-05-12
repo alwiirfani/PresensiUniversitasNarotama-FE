@@ -23,8 +23,7 @@ const NavAuthButton = ({ className }) => {
 
       localStorage.removeItem("user");
 
-      window.location.href = "/";
-      window.location.reload();
+      window.location.href = "/login";
     } catch (error) {
       console.error("Error logging out:", error);
     } finally {

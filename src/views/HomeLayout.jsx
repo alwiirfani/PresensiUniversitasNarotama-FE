@@ -1,5 +1,5 @@
 import IklanBanner from "@/components/home/IklanBanner";
-import PresensiDosen from "@/components/home/presensiDosen";
+import PresensiDosen from "@/components/home/PresensiDosen";
 import { titleChange } from "@/services/title-manager";
 import { useEffect, useState } from "react";
 

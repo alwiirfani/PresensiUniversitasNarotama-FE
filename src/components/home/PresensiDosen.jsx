@@ -1,5 +1,5 @@
 import { findAllPresensiDosen } from "@/services/presensi-dosen/presensi-dosen-service";
-import { format, isToday } from "date-fns";
+import { isToday } from "date-fns";
 import React, { useEffect, useState } from "react";
 import PresensiDosenClient from "./presensi-dosen/client";
 
@@ -17,13 +17,13 @@ const PresensiDosen = () => {
 
         // format data
         const formattedData = response.data
-          .filter((item) => {
-            item.status === "HADIR" && isToday(new Date(item.tanggal));
-          })
+          .filter(
+            (item) => item.status === "HADIR" && isToday(new Date(item.tanggal))
+          )
           .map((item) => ({
             nama: item.dosen.nama,
-            tanggal: format(new Date(item.tanggal), "MMMM dd, yyyy"),
-            status: item.status,
+            // fakultas: item.jadwalMataKuliah.mataKuliah.prodi.fakultas.nama,
+            // prodi: item.jadwalMataKuliah.mataKuliah.prodi.nama,
           }));
 
         setPresensiDosen(formattedData);

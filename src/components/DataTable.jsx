@@ -95,7 +95,7 @@ const DataTable = ({ data, columns, searchKey }) => {
         </Table>
       </div>
 
-      {/* pagination */}
+      {/* Table footer */}
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="outline"

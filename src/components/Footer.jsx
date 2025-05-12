@@ -2,8 +2,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="w-full h-56 flex items-center justify-center bg-border mt-10">
-      <span className="text-2xl font-bold">Footer = Kaki</span>
+    <div className="w-full h-[50px] flex items-center justify-center bg-border mt-10">
+      <span className="text-base text-muted-foreground">
+        &copy; 2025 Alwi Irfani. All rights reserved.
+      </span>
     </div>
   );
 };

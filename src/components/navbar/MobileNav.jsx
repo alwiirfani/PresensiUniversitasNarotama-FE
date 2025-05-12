@@ -8,7 +8,7 @@ import logoNarotama from "../../assets/images/logo_unnar.png";
 import { siteConfig } from "@/configs/SiteConfig";
 import NavAuthButton from "./NavAuthButton";
 import { useAuth } from "@/contexts/AuthContext";
-import { Separator } from "../ui/separator";
+import { cn } from "@/lib/utils";
 
 const MobileNav = () => {
   const { user } = useAuth();
@@ -63,17 +63,17 @@ const MobileNav = () => {
           <div className="flex flex-col h-[85%] gap-3">
             {user &&
               routes.map((route) => (
-                <div
+                <MobileLink
                   key={route.href}
-                  className="flex flex-row gap-2 items-center justify-center mx-3 p-2 border border-border rounded-lg">
+                  to={route.href}
+                  onOpenChange={setOpen}
+                  className={cn(
+                    "flex flex-row gap-2 items-center mx-3 p-2 border border-border rounded-lg",
+                    route.active ? "bg-border" : "bg-background"
+                  )}>
                   {route.icon}
-                  <MobileLink
-                    to={route.href}
-                    onOpenChange={setOpen}
-                    className={"text-base font-medium"}>
-                    {route.label}
-                  </MobileLink>
-                </div>
+                  <span className={"text-base font-medium"}>{route.label}</span>
+                </MobileLink>
               ))}
           </div>
 

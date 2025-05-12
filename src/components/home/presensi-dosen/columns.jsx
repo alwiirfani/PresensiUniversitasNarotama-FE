@@ -1,17 +1,7 @@
 export const columns = [
   {
-    header: "Nama",
+    header: "Nama Dosen",
     accessorKey: "nama",
-    cell: (info) => info.getValue(),
-  },
-  {
-    header: "Tanggal",
-    accessorKey: "tanggal",
-    cell: (info) => info.getValue(),
-  },
-  {
-    header: "Status",
-    accessorKey: "status",
     cell: (info) => info.getValue(),
   },
   {
@@ -20,7 +10,7 @@ export const columns = [
     cell: (info) => info.getValue(),
   },
   {
-    header: "Prodi",
+    header: "Program Studi",
     accessorKey: "prodi",
     cell: (info) => info.getValue(),
   },
