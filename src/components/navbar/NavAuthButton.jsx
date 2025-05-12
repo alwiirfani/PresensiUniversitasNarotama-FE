@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logoutAuth } from "@/services/auth/auth-service";
 import { cn } from "@/lib/utils";
 import PropTypes from "prop-types";
 import { useAuth } from "@/contexts/AuthContext";
-import { ClipLoader } from "react-spinners";
 import LoaderButton from "@/configs/LoaderButton";
 
 const NavAuthButton = ({ className }) => {
+  const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,8 +22,7 @@ const NavAuthButton = ({ className }) => {
       console.log(response.data);
 
       localStorage.removeItem("user");
-
-      window.location.href = "/login";
+      navigate("/login");
     } catch (error) {
       console.error("Error logging out:", error);
     } finally {
