@@ -7,35 +7,36 @@ const PresensiDosen = () => {
   const [presensiDosen, setPresensiDosen] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const fetchPresensiDosen = async () => {
+    try {
+      setIsLoading(true);
+
+      const response = await findAllPresensiDosen();
+      console.log(response.data);
+
+      // format data
+      const formattedData = response.data
+        .filter(
+          (item) => item.status === "HADIR" && isToday(new Date(item.tanggal))
+        )
+        .map((item) => ({
+          nama: item.dosen.nama,
+          fakultas: item.dosen.prodi.fakultas.nama,
+          prodi: item.dosen.prodi.nama,
+        }));
+
+      setPresensiDosen(formattedData);
+    } catch (error) {
+      console.error("Error fetching presensi dosen:", error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchPresensiDosen = async () => {
-      try {
-        setIsLoading(true);
-
-        const response = await findAllPresensiDosen();
-        console.log(response.data);
-
-        // format data
-        const formattedData = response.data
-          .filter(
-            (item) => item.status === "HADIR" && isToday(new Date(item.tanggal))
-          )
-          .map((item) => ({
-            nama: item.dosen.nama,
-            // fakultas: item.jadwalMataKuliah.mataKuliah.prodi.fakultas.nama,
-            // prodi: item.jadwalMataKuliah.mataKuliah.prodi.nama,
-          }));
-
-        setPresensiDosen(formattedData);
-      } catch (error) {
-        console.error("Error fetching presensi dosen:", error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     fetchPresensiDosen();
   }, []);
+
   return (
     <div className="flex flex-col">
       {isLoading ? (

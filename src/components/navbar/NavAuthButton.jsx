@@ -22,11 +22,11 @@ const NavAuthButton = ({ className }) => {
       console.log(response.data);
 
       localStorage.removeItem("user");
+      logout();
       navigate("/login");
     } catch (error) {
       console.error("Error logging out:", error);
     } finally {
-      logout();
       setIsLoading(false);
     }
   };
