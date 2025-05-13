@@ -1,9 +1,15 @@
+import DataMahasiswa from "@/components/profile/DataMahasiswa";
+import ProfileMahasiswa from "@/components/profile/ProfileMahasiswa";
 import React from "react";
 
 const ProfileLayout = () => {
   return (
-    <div className="flex w-full min-h-screen items-center justify-center">
-      ProfileLayout
+    <div className="container flex">
+      <div className="w-full flex flex-col items-center">
+        <ProfileMahasiswa>
+          <DataMahasiswa />
+        </ProfileMahasiswa>
+      </div>
     </div>
   );
 };
