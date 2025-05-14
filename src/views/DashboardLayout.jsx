@@ -1,6 +1,7 @@
 import JadwalMataKuliah from "@/components/dashboard/JadwalMataKuliah";
 import ProfileCard from "@/components/dashboard/ProfileCard";
 import { Separator } from "@/components/ui/separator";
+import { titleChange } from "@/services/title-manager";
 import React, { useEffect, useState } from "react";
 
 const DashboardLayout = () => {
@@ -15,6 +16,8 @@ const DashboardLayout = () => {
       console.log(parsedUser);
     }
   }, []);
+
+  titleChange("Dashboard - Universitas Narotama");
   return (
     <div className="container h-full flex flex-col">
       {/* Profile Card */}

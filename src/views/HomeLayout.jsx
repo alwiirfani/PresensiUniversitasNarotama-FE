@@ -20,7 +20,7 @@ const HomeLayout = () => {
   // title
   titleChange("Universitas Narotama");
   return (
-    <div className="container h-full flex flex-col items-center">
+    <div className="container flex flex-col items-center">
       {/* konten bagian atas */}
       <div className="w-full items-center justify-center">
         {user && user.nama ? (
