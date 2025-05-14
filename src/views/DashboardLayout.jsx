@@ -19,7 +19,9 @@ const DashboardLayout = () => {
     <div className="container h-full flex flex-col">
       {/* Profile Card */}
       <div className="flex w-full h-56 sm:h-64 justify-center py-8 sm:py-10">
-        {user && user.nama && <ProfileCard nama={user.nama} role={user.role} />}
+        {user && user.nama && (
+          <ProfileCard id={user.id} nama={user.nama} role={user.role} />
+        )}
       </div>
 
       <Separator className="w-full" />

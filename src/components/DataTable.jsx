@@ -116,4 +116,14 @@ const DataTable = ({ data, columns, searchKey }) => {
   );
 };
 
+const createGlobalFilterFn = (searchKeys = []) => {
+  return (row, _columnId, filterValue) => {
+    return searchKeys.some((key) =>
+      String(row.original[key] ?? "")
+        .toLowerCase()
+        .includes(filterValue.toLowerCase())
+    );
+  };
+};
+
 export default DataTable;

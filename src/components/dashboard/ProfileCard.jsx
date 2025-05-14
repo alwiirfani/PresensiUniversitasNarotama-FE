@@ -8,10 +8,11 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Button } from "../ui/button";
-import { CircleUserRound } from "lucide-react";
+import { CircleUserRound, KeySquare } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
-const ProfileCard = ({ nama, role }) => {
+const ProfileCard = ({ id, nama, role }) => {
   return (
     <Card className="w-[350px] h-[170px] hover:bg-slate-100">
       <CardHeader>
@@ -29,13 +30,33 @@ const ProfileCard = ({ nama, role }) => {
         </div>
       </CardHeader>
       <CardFooter className="flex justify-center">
-        <Link to={"/profile"} className="w-full">
-          <Button
-            className="hover:bg-border border-2 border-border w-full"
-            variant="outline">
-            <CircleUserRound /> Profil
-          </Button>
-        </Link>
+        <Popover className="w-full">
+          <PopoverTrigger asChild>
+            <Button
+              className="hover:bg-border border-2 border-border w-full"
+              variant="outline">
+              {role === "mahasiswa" ? "Mahasiswa" : "Dosen"}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-52 flex flex-col gap-2">
+            <>
+              <Link to="/profile" className="w-full">
+                <Button
+                  className="hover:bg-border border-2 border-border w-full"
+                  variant="outline">
+                  <CircleUserRound /> Profil
+                </Button>
+              </Link>
+              <Link to={`/change-password/${id}`} className="w-full">
+                <Button
+                  className="hover:bg-border border-2 border-border w-full"
+                  variant="outline">
+                  <KeySquare /> Ganti Password
+                </Button>
+              </Link>
+            </>
+          </PopoverContent>
+        </Popover>
       </CardFooter>
     </Card>
   );

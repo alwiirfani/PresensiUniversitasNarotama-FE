@@ -7,6 +7,7 @@ import ProtectedRoute from "./contexts/ProtectedRoute";
 import ErrorNotFoundLayout from "./views/errors/ErrorNotFoundLayout";
 import PresensiLayout from "./views/PresensiLayout";
 import ProfileLayout from "./views/ProfileLayout";
+import ChangePasswordLayout from "./views/ChangePasswordLayout";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <ProfileLayout />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/change-password/:id",
+        element: (
+          <ProtectedRoute>
+            <ChangePasswordLayout />
           </ProtectedRoute>
         ),
       },

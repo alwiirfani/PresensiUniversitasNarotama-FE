@@ -32,7 +32,7 @@ const DataMahasiswa = () => {
 
   const dataAkademik = {
     semester: "Genap 2025",
-    ipk: "3.85",
+    ipk: "1.5",
   };
 
   return (
@@ -99,29 +99,31 @@ const DataMahasiswa = () => {
         </TabsContent>
         <TabsContent value="akademik">
           <Card className="h-[26.6rem] sm:h-[34rem] shadow-md overflow-y-scroll">
-            <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-2 my-3 p-2 sm:py-2 sm:px-4">
-              <div className="flex flex-row items-center justify-center sm:items-start sm:justify-start sm:flex-col gap-1">
-                <Label htmlFor="semester">Semester</Label>
-                <Input
-                  disabled={isDisabled}
-                  id="semester"
-                  defaultValue={dataAkademik.semester}
-                  type={"text"}
-                  className="w-full"
-                />
-              </div>
-              <div className="flex flex-row items-center justify-center sm:items-start sm:justify-start sm:flex-col gap-1">
-                <Label htmlFor="ipk">IPK</Label>
-                <Input
-                  disabled={isDisabled}
-                  id="ipk"
-                  type={"number"}
-                  defaultValue={dataAkademik.ipk}
-                  className="w-full"
-                  step="0.01"
-                />
-              </div>
-            </CardContent>
+            {tabValue === "mahasiswa" && (
+              <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-2 my-3 p-2 sm:py-2 sm:px-4">
+                <div className="flex flex-row items-center justify-center sm:items-start sm:justify-start sm:flex-col gap-1">
+                  <Label htmlFor="semester">Semester</Label>
+                  <Input
+                    disabled={isDisabled}
+                    id="semester"
+                    defaultValue={dataAkademik.semester}
+                    type={"text"}
+                    className="w-full"
+                  />
+                </div>
+                <div className="flex flex-row items-center justify-center sm:items-start sm:justify-start sm:flex-col gap-1">
+                  <Label htmlFor="ipk">IPK</Label>
+                  <Input
+                    disabled={isDisabled}
+                    id="ipk"
+                    type={"number"}
+                    defaultValue={dataAkademik.ipk}
+                    className="w-full"
+                    step="0.01"
+                  />
+                </div>
+              </CardContent>
+            )}
             <CardFooter className="flex justify-center p-2 sm:p-3">
               {isDisabled ? (
                 <Button
