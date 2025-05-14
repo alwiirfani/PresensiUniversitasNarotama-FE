@@ -19,4 +19,12 @@ export const columns = [
     header: "Ruangan",
     accessorKey: "ruangan",
   },
+  {
+    header: "Program Studi",
+    accessorKey: "prodi",
+  },
+  {
+    header: "Keterangan",
+    accessorKey: "keterangan",
+  },
 ];

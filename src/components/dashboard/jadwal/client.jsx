@@ -12,6 +12,7 @@ const JadwalMataKuliahClient = ({ data }) => {
           className="flex flex-col items-center justify-center mb-3"
           title="Jadwal Mata Kuliah"
           description="hari ini"
+          classNameHr={"w-24"}
         />
         <Separator className="w-3/4" />
       </div>
