@@ -9,7 +9,7 @@ const PresensiDosenClient = ({ data }) => {
     <div className="items-center justify-center">
       <div className="flex flex-col items-center justify-center mb-0">
         <Heading
-          className="flex flex-col items-center justify-center mb-3 w"
+          className="flex flex-col items-center justify-center mb-3"
           title="Kehadiran Dosen"
           description="hari ini"
           classNameHr={"w-20"}

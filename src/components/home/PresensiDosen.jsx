@@ -2,6 +2,7 @@ import { findAllPresensiDosen } from "@/services/presensi-dosen/presensi-dosen-s
 import { isToday } from "date-fns";
 import React, { useEffect, useState } from "react";
 import PresensiDosenClient from "./presensi-dosen/client";
+import SkeletonTableClient from "../SkeletonTableClient";
 
 const PresensiDosen = () => {
   const [presensiDosen, setPresensiDosen] = useState([]);
@@ -40,7 +41,7 @@ const PresensiDosen = () => {
   return (
     <div className="flex flex-col">
       {isLoading ? (
-        <div></div>
+        <SkeletonTableClient />
       ) : (
         <div className="flex-1 space-y-4 pt-6">
           <PresensiDosenClient data={presensiDosen} />

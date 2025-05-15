@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import JadwalMataKuliahClient from "./jadwal/client";
+import SkeletonTableClient from "../SkeletonTableClient";
 
 const JadwalMataKuliah = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -8,7 +9,7 @@ const JadwalMataKuliah = () => {
   return (
     <div className="flex flex-col">
       {isLoading ? (
-        <div>Loading</div>
+        <SkeletonTableClient />
       ) : (
         <div className="flex-1 space-y-4 pt-6">
           <JadwalMataKuliahClient data={[]} />

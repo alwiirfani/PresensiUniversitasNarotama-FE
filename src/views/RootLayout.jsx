@@ -1,11 +1,41 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import PropTypes from "prop-types";
 
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
+import { useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const RootLayout = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        const accessToken = parsedUser.accessToken;
+
+        if (!accessToken) throw new Error("Access token not found");
+
+        const decode = jwtDecode(accessToken);
+        const currentTime = Date.now() / 1000;
+
+        if (decode.exp && decode.exp < currentTime) {
+          console.warn("Access token expired");
+          localStorage.removeItem("user");
+          navigate("/login");
+        }
+
+        console.log(decode);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        localStorage.removeItem("user");
+        navigate("/login");
+      }
+    }
+  }, []);
   return (
     <div
       className={cn(
