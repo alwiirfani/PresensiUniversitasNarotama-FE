@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Card, CardContent, CardFooter } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import mahasiswaService from "@/services/mahasiswa/mahasiswa-service";
+import FieldSet from "./FieldSet";
+import { BookKey, Home, IdCard, Mail, PersonStanding } from "lucide-react";
+import SkeletonDataProfile from "./SkeletonDataProfile";
 
-const DataProfile = () => {
-  const [user, setUser] = useState({});
+const DataProfile = ({ user, tabValue }) => {
   const [userData, setUserData] = useState({});
-  const [tabValue, setTabValue] = useState("mahasiswa");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDataProfile = async () => {
@@ -33,21 +32,7 @@ const DataProfile = () => {
   };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-      setUser(parsedUser);
-
-      if (parsedUser.role === "mahasiswa") {
-        setTabValue("mahasiswa");
-      } else if (parsedUser.role === "dosen") {
-        setTabValue("dosen");
-      }
-    }
-  }, []);
-
-  useEffect(async () => {
-    if (user) await handleDataProfile();
+    if (user) handleDataProfile();
   }, [user]);
 
   return (
@@ -61,46 +46,31 @@ const DataProfile = () => {
         </TabsList>
         <TabsContent value={tabValue}>
           <Card className="h-[26.6rem] sm:h-[34rem] shadow-md overflow-y-scroll">
-            <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-2 my-3 p-2 sm:py-2 sm:px-4">
+            <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-2 my-3 p-2 sm:py-2">
               {isLoading ? (
-                <div className="col-span-2 flex justify-center items-center h-32">
-                  <span className="text-gray-500 text-sm">Memuat data...</span>
-                </div>
+                <SkeletonDataProfile />
               ) : (
                 <>
-                  <div className="flex flex-row items-center justify-center sm:items-start sm:justify-start sm:flex-col gap-1">
-                    <Label htmlFor="nama" className="text-xs sm:text-base">
-                      Nama
-                    </Label>
-                    <Input
-                      id="nama"
-                      defaultValue={userData.nama}
-                      type={"text"}
-                      className="w-full overflow-auto whitespace-nowrap"
-                    />
-                  </div>
-                  <div className="flex flex-row items-center justify-center sm:items-start sm:justify-start sm:flex-col gap-1">
-                    <Label htmlFor="email" className="text-xs sm:text-base">
-                      Email
-                    </Label>
-                    <Input
-                      id="email"
-                      type={"email"}
-                      defaultValue={userData.email}
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="flex flex-row items-center justify-center sm:items-start sm:justify-start sm:flex-col gap-1">
-                    <Label htmlFor="alamat" className="text-xs sm:text-base">
-                      Alamat
-                    </Label>
-                    <Input
-                      id="alamat"
-                      type={"text"}
-                      defaultValue={userData.alamat}
-                      className="w-full"
-                    />
-                  </div>
+                  <FieldSet
+                    label={user.role === "mahasiswa" ? "NIM" : "NIP"}
+                    value={userData.nim}
+                    icon={<IdCard className="h-4 w-4" />}
+                  />
+                  <FieldSet
+                    label={"Nama"}
+                    value={userData.nama}
+                    icon={<PersonStanding className="h-4 w-4" />}
+                  />
+                  <FieldSet
+                    label={"Email"}
+                    value={userData.email}
+                    icon={<Mail className="h-4 w-4" />}
+                  />
+                  <FieldSet
+                    label={"Alamat"}
+                    value={userData.alamat}
+                    icon={<Home className="h-4 w-4" />}
+                  />
                 </>
               )}
             </CardContent>
@@ -110,27 +80,18 @@ const DataProfile = () => {
           <Card className="h-[26.6rem] sm:h-[34rem] shadow-md overflow-y-scroll">
             {tabValue === "mahasiswa" && (
               <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-2 my-3 p-2 sm:py-2 sm:px-4">
-                <div className="flex flex-row items-center justify-center sm:items-start sm:justify-start sm:flex-col gap-1">
-                  <Label htmlFor="prodi" className="text-xs sm:text-base">
-                    Program Studi
-                  </Label>
-                  <Input
-                    id="prodi"
-                    defaultValue={userData.namaProdi}
-                    type={"text"}
-                    className="w-full"
-                  />
-                </div>
-                <div className="flex flex-row items-center justify-center sm:items-start sm:justify-start sm:flex-col gap-1">
-                  <Label htmlFor="ipk">IPK</Label>
-                  <Input
-                    id="ipk"
-                    type={"number"}
-                    defaultValue={0}
-                    className="w-full"
-                    step="0.01"
-                  />
-                </div>
+                {isLoading ? (
+                  <SkeletonDataProfile />
+                ) : (
+                  <>
+                    <FieldSet
+                      label={"Program Studi"}
+                      value={userData.namaProdi}
+                      icon={<BookKey className="h-4 w-4" />}
+                    />
+                    <FieldSet label={"IPK"} value={0} />
+                  </>
+                )}
               </CardContent>
             )}
           </Card>

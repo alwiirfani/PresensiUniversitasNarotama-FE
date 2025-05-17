@@ -3,6 +3,7 @@ import LoginInput from "./LoginInput";
 import { Form } from "../ui/form";
 import LoginButton from "./LoginButton";
 import PropTypes from "prop-types";
+import { IdCard, LockKeyhole } from "lucide-react";
 
 const LoginForm = ({ form, isLoading, onSubmit, onError }) => {
   return (
@@ -14,9 +15,10 @@ const LoginForm = ({ form, isLoading, onSubmit, onError }) => {
           <LoginInput
             control={form.control}
             name="id"
-            label="NIM"
+            label="NIM / NIP"
             placeholder="12345678"
             disabled={isLoading}
+            icon={<IdCard className="h-4 w-4" />}
           />
 
           <LoginInput
@@ -26,6 +28,7 @@ const LoginForm = ({ form, isLoading, onSubmit, onError }) => {
             type="password"
             placeholder="*****"
             disabled={isLoading}
+            icon={<LockKeyhole className="h-4 w-4" />}
           />
 
           <LoginButton isLoading={isLoading}>Login</LoginButton>
