@@ -1,5 +1,5 @@
-import DataMahasiswa from "@/components/profile/DataMahasiswa";
-import ProfileMahasiswa from "@/components/profile/ProfileMahasiswa";
+import DataProfile from "@/components/profile/DataProfile";
+import Profile from "@/components/profile/Profile";
 import { titleChange } from "@/services/title-manager";
 import React from "react";
 
@@ -9,9 +9,9 @@ const ProfileLayout = () => {
   return (
     <div className="container flex">
       <div className="w-full flex flex-col items-center">
-        <ProfileMahasiswa>
-          <DataMahasiswa />
-        </ProfileMahasiswa>
+        <Profile>
+          <DataProfile />
+        </Profile>
       </div>
     </div>
   );

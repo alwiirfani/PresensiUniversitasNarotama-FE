@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className="w-full h-[50px] flex items-center justify-center bg-border mt-10">
       <span className="text-base text-muted-foreground">
-        &copy; 2025 Alwi Irfani. All rights reserved.
+        Copyright &copy; 2025 Alwi Irfani. All rights reserved.
       </span>
     </div>
   );

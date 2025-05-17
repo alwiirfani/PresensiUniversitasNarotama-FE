@@ -27,8 +27,6 @@ const RootLayout = () => {
           localStorage.removeItem("user");
           navigate("/login");
         }
-
-        console.log(decode);
       } catch (error) {
         console.error("Error parsing user data:", error);
         localStorage.removeItem("user");

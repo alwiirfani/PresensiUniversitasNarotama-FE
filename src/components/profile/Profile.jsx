@@ -2,7 +2,7 @@ import React from "react";
 import { Separator } from "../ui/separator";
 import dummyUser from "../../assets/images/user.png";
 
-const ProfileMahasiswa = ({ children }) => {
+const Profile = ({ children }) => {
   return (
     <div className="flex flex-col w-[20rem] h-[40rem] sm:w-[40rem] sm:h-[50rem] border border-gray-200 shadow-md rounded-md items-center mt-10">
       <img
@@ -18,4 +18,4 @@ const ProfileMahasiswa = ({ children }) => {
   );
 };
 
-export default ProfileMahasiswa;
+export default Profile;

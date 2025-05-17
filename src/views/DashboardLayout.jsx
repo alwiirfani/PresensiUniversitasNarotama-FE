@@ -1,11 +1,20 @@
 import JadwalMataKuliah from "@/components/dashboard/JadwalMataKuliah";
 import ProfileCard from "@/components/dashboard/ProfileCard";
 import { Separator } from "@/components/ui/separator";
+import mahasiswaService from "@/services/mahasiswa/mahasiswa-service";
 import { titleChange } from "@/services/title-manager";
 import React, { useEffect, useState } from "react";
 
 const DashboardLayout = () => {
   const [user, setUser] = useState({});
+
+  const handleProfileCard = async () => {
+    if (user.role === "mahasiswa") {
+      await mahasiswaService.findMahasiswaByNim(user.id);
+    } else if (user.role === "dosen") {
+      // Lakukan tindakan untuk dosen
+    }
+  };
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -15,6 +24,8 @@ const DashboardLayout = () => {
 
       console.log(parsedUser);
     }
+
+    handleProfileCard();
   }, []);
 
   titleChange("Dashboard - Universitas Narotama");
