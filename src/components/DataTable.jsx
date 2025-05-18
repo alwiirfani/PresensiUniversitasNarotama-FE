@@ -29,6 +29,11 @@ const DataTable = ({ data, columns, searchKey }) => {
     state: {
       columnFilters,
     },
+    initialState: {
+      pagination: {
+        pageSize: 7,
+      },
+    },
   });
 
   return (

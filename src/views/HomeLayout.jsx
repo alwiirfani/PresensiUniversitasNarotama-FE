@@ -40,7 +40,7 @@ const HomeLayout = () => {
       </div>
 
       {/* tabel kehadiran dosen */}
-      <div className="w-full h-52 mt-14 mb-64 sm:mb-52">
+      <div className="w-full mt-14 ">
         <PresensiDosen />
       </div>
     </div>

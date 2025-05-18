@@ -16,7 +16,7 @@ const JadwalMataKuliahClient = ({ data }) => {
         />
         <Separator className="w-full sm:w-3/4" />
       </div>
-      <DataTable data={data} columns={columns} searchKey={""} />
+      <DataTable data={data} columns={columns} searchKey={"jam_mulai"} />
     </div>
   );
 };

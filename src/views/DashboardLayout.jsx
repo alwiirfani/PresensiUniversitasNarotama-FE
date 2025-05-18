@@ -30,7 +30,7 @@ const DashboardLayout = () => {
 
   titleChange("Dashboard - Universitas Narotama");
   return (
-    <div className="container h-full flex flex-col">
+    <div className="container flex flex-col">
       {/* Profile Card */}
       <div className="flex w-full h-56 sm:h-64 justify-center py-8 sm:py-10">
         {user && user.nama && (
@@ -41,7 +41,7 @@ const DashboardLayout = () => {
       <Separator className="w-full" />
 
       {/* Jadwal Mata Kuliah */}
-      <div className="w-full h-56 sm:h-64 mt-4 sm:mt-6 mb-44">
+      <div className="w-full mt-4 sm:mt-6">
         <JadwalMataKuliah />
       </div>
     </div>
