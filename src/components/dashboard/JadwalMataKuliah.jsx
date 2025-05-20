@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import JadwalMataKuliahClient from "./jadwal/client";
 import SkeletonTableClient from "../SkeletonTableClient";
+import { findAllJadwalMatkul } from "@/services/jadwal-matkul/jadwal-matkul-service";
 
 const getDayNow = () => {
   const dayList = [
@@ -19,200 +20,26 @@ const JadwalMataKuliah = () => {
   const [jadwalMatKul, setJadwalMatKul] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const jadwalList = [
-    {
-      id: "1",
-      hari: "Senin",
-      jamMulai: "08:00",
-      jamSelesai: "10:00",
-      ruangan: "R1",
-    },
-    {
-      id: "2",
-      hari: "Selasa",
-      jamMulai: "10:00",
-      jamSelesai: "12:00",
-      ruangan: "R2",
-    },
-    {
-      id: "3",
-      hari: "Senin",
-      jamMulai: "13:00",
-      jamSelesai: "15:00",
-      ruangan: "R3",
-    },
-    {
-      id: "1",
-      hari: "Senin",
-      jamMulai: "08:00",
-      jamSelesai: "10:00",
-      ruangan: "R1",
-    },
-    {
-      id: "2",
-      hari: "Selasa",
-      jamMulai: "10:00",
-      jamSelesai: "12:00",
-      ruangan: "R2",
-    },
-    {
-      id: "3",
-      hari: "Senin",
-      jamMulai: "13:00",
-      jamSelesai: "15:00",
-      ruangan: "R3",
-    },
-    {
-      id: "1",
-      hari: "Senin",
-      jamMulai: "08:00",
-      jamSelesai: "10:00",
-      ruangan: "R1",
-    },
-    {
-      id: "2",
-      hari: "Selasa",
-      jamMulai: "10:00",
-      jamSelesai: "12:00",
-      ruangan: "R2",
-    },
-    {
-      id: "3",
-      hari: "Senin",
-      jamMulai: "13:00",
-      jamSelesai: "15:00",
-      ruangan: "R3",
-    },
-    {
-      id: "1",
-      hari: "Senin",
-      jamMulai: "08:00",
-      jamSelesai: "10:00",
-      ruangan: "R1",
-    },
-    {
-      id: "2",
-      hari: "Selasa",
-      jamMulai: "10:00",
-      jamSelesai: "12:00",
-      ruangan: "R2",
-    },
-    {
-      id: "3",
-      hari: "Senin",
-      jamMulai: "13:00",
-      jamSelesai: "15:00",
-      ruangan: "R3",
-    },
-    {
-      id: "1",
-      hari: "Senin",
-      jamMulai: "08:00",
-      jamSelesai: "10:00",
-      ruangan: "R1",
-    },
-    {
-      id: "2",
-      hari: "Selasa",
-      jamMulai: "10:00",
-      jamSelesai: "12:00",
-      ruangan: "R2",
-    },
-    {
-      id: "3",
-      hari: "Senin",
-      jamMulai: "13:00",
-      jamSelesai: "15:00",
-      ruangan: "R3",
-    },
-    {
-      id: "2",
-      hari: "Selasa",
-      jamMulai: "10:00",
-      jamSelesai: "12:00",
-      ruangan: "R2",
-    },
-    {
-      id: "3",
-      hari: "Senin",
-      jamMulai: "13:00",
-      jamSelesai: "15:00",
-      ruangan: "R3",
-    },
-    {
-      id: "2",
-      hari: "Selasa",
-      jamMulai: "10:00",
-      jamSelesai: "12:00",
-      ruangan: "R2",
-    },
-    {
-      id: "3",
-      hari: "Senin",
-      jamMulai: "13:00",
-      jamSelesai: "15:00",
-      ruangan: "R3",
-    },
-    {
-      id: "2",
-      hari: "Selasa",
-      jamMulai: "10:00",
-      jamSelesai: "12:00",
-      ruangan: "R2",
-    },
-    {
-      id: "3",
-      hari: "Senin",
-      jamMulai: "13:00",
-      jamSelesai: "15:00",
-      ruangan: "R3",
-    },
-    {
-      id: "2",
-      hari: "Selasa",
-      jamMulai: "10:00",
-      jamSelesai: "12:00",
-      ruangan: "R2",
-    },
-    {
-      id: "3",
-      hari: "Senin",
-      jamMulai: "13:00",
-      jamSelesai: "15:00",
-      ruangan: "R3",
-    },
-    {
-      id: "2",
-      hari: "Selasa",
-      jamMulai: "10:00",
-      jamSelesai: "12:00",
-      ruangan: "R2",
-    },
-    {
-      id: "3",
-      hari: "Senin",
-      jamMulai: "13:00",
-      jamSelesai: "15:00",
-      ruangan: "R3",
-    },
-  ];
-
   const fetchJadwalMatkul = async () => {
     try {
       setIsLoading(true);
 
-      const formattedData = jadwalList
+      const response = await findAllJadwalMatkul();
+      console.log(response.data);
+
+      const formattedData = response.data
         .filter((item) => item.hari.toLowerCase() === getDayNow().toLowerCase())
         .map((item) => ({
+          nama: item.dosen.nama,
+          mata_kuliah: item.mataKuliah.nama,
           hari: item.hari,
+          prodi: item.mataKuliah.prodi.nama,
           jam_mulai: item.jamMulai,
           jam_selesai: item.jamSelesai,
           ruangan: item.ruangan,
         }));
 
       setJadwalMatKul(formattedData);
-
-      console.log(formattedData);
     } catch (error) {
       console.error("Error fetching jadwal matkul:", error.message);
     } finally {

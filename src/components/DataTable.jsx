@@ -16,18 +16,19 @@ import {
 } from "./ui/table";
 import { Button } from "./ui/button";
 
-const DataTable = ({ data, columns, searchKey }) => {
-  const [columnFilters, setColumnFilters] = useState([]);
+const DataTable = ({ inputSearch, data, columns, searchKey = [] }) => {
+  const [globalFilter, setGlobalFilter] = useState("");
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    onColumnFiltersChange: setColumnFilters,
+    onGlobalFilterChange: setGlobalFilter,
     getFilteredRowModel: getFilteredRowModel(),
+    globalFilterFn: createGlobalFilterFn(searchKey),
     state: {
-      columnFilters,
+      globalFilter,
     },
     initialState: {
       pagination: {
@@ -41,12 +42,10 @@ const DataTable = ({ data, columns, searchKey }) => {
       {/* Search */}
       <div className="flex items-center py-4">
         <input
-          placeholder="Search..."
-          value={table.getColumn(searchKey)?.getFilterValue() ?? ""}
-          onChange={(event) =>
-            table.getColumn(searchKey)?.setFilterValue(event.target.value)
-          }
-          className="w-full border border-gray-300 rounded-md p-2"
+          placeholder={`Search..... ${inputSearch ? inputSearch : ""}`}
+          value={globalFilter ?? ""}
+          onChange={(event) => setGlobalFilter(event.target.value)}
+          className="w-full text-sm sm:text-lg border border-gray-300 rounded-md p-2 overflow-auto"
         />
       </div>
 

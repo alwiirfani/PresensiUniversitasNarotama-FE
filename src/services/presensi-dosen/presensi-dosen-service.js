@@ -1,5 +1,4 @@
 import publicApi from "../axios/public-api-service";
-import axios from "axios";
 
 const findAllPresensiDosen = async () => {
   try {

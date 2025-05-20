@@ -5,7 +5,7 @@ export const columns = [
   },
   {
     header: "Mata kuliah",
-    accessorKey: "matakuliah",
+    accessorKey: "mata_kuliah",
   },
   {
     header: "Jam Mulai",
@@ -22,9 +22,5 @@ export const columns = [
   {
     header: "Program Studi",
     accessorKey: "prodi",
-  },
-  {
-    header: "Keterangan",
-    accessorKey: "keterangan",
   },
 ];
