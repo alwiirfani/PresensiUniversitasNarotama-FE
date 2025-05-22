@@ -6,6 +6,7 @@ import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import { Toaster } from "@/components/ui/sonner";
 
 const RootLayout = () => {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ const RootLayout = () => {
       )}>
       <div className="relative flex flex-col min-h-dvh bg-background overflow-hidden">
         <SiteHeader />
+        <Toaster position="top-center" richColors />
         <main className="flex-1 pt-16">
           <Outlet />
         </main>
