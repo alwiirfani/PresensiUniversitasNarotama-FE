@@ -1,3 +1,5 @@
+import CellAction from "./cell-action";
+
 export const columns = [
   {
     header: "Nama Dosen",
@@ -20,7 +22,7 @@ export const columns = [
     accessorKey: "ruangan",
   },
   {
-    header: "Program Studi",
-    accessorKey: "prodi",
+    id: "aksi",
+    cell: ({ row }) => <CellAction data={row.original} />,
   },
 ];

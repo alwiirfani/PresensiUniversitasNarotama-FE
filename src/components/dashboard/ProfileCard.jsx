@@ -46,18 +46,18 @@ const ProfileCard = ({ id, nama, role }) => {
               {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-52 flex flex-col gap-2">
+          <PopoverContent className="w-48 flex flex-col gap-2">
             <>
               <Link to="/profile" className="w-full">
                 <Button
-                  className="hover:bg-border border-2 border-border w-full"
+                  className="hover:bg-border border-2 border-border w-full justify-start"
                   variant="outline">
-                  <CircleUserRound /> Profil
+                  <CircleUserRound /> Biodata
                 </Button>
               </Link>
               <Link to={`/change-password/${id}`} className="w-full">
                 <Button
-                  className="hover:bg-border border-2 border-border w-full"
+                  className="hover:bg-border border-2 border-border w-full justify-start"
                   variant="outline">
                   <KeySquare /> Ganti Password
                 </Button>
