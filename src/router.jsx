@@ -8,6 +8,7 @@ import ErrorNotFoundLayout from "./views/errors/ErrorNotFoundLayout";
 import PresensiLayout from "./views/PresensiLayout";
 import ProfileLayout from "./views/ProfileLayout";
 import ChangePasswordLayout from "./views/ChangePasswordLayout";
+import PresensiDetailLayout from "./views/PresensiDetailLayout";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <PresensiLayout />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/presensi/:id",
+        element: (
+          <ProtectedRoute>
+            <PresensiDetailLayout />
           </ProtectedRoute>
         ),
       },

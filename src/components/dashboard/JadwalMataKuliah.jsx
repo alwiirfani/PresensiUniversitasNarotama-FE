@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import JadwalMataKuliahClient from "./jadwal/client";
 import SkeletonTableClient from "../SkeletonTableClient";
-import { findAllJadwalMatkul } from "@/services/jadwal-matkul/jadwal-matkul-service";
+import jadwalMatkulService from "@/services/jadwal-matkul/jadwal-matkul-service";
 
 const JadwalMataKuliah = () => {
   const [jadwalMatKul, setJadwalMatKul] = useState([]);
@@ -14,7 +14,7 @@ const JadwalMataKuliah = () => {
       const today = new Date().toLocaleDateString("id-ID", { weekday: "long" });
       console.log("hari ini: ", today);
 
-      const response = await findAllJadwalMatkul();
+      const response = await jadwalMatkulService.findAllJadwalMatkul();
       console.log(response.data);
 
       const formattedData = response.data

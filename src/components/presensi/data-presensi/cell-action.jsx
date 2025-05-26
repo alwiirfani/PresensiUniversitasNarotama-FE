@@ -4,8 +4,10 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Copy, Ellipsis } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { CalendarFold, Copy, Ellipsis } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 const CellAction = ({ data }) => {
@@ -22,13 +24,26 @@ const CellAction = ({ data }) => {
           <Ellipsis className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-24 sm:w-36">
+      <DropdownMenuContent
+        align="end"
+        className="w-24 sm:w-36 flex flex-col gap-1">
+        <div className="w-full flex flex-col">
+          <span className="text-base text-muted-foreground pl-2 py-1">
+            Action
+          </span>
+          <Separator />
+        </div>
         <Button
-          className="w-full text-xs sm:text-sm justify-start"
+          className="w-full text-sm justify-start border-none"
           variant="outline"
           onClick={() => onCopy()}>
-          Copy ID <Copy className="h-4 w-4" />
+          <Copy className="h-4 w-4" /> Copy ID
         </Button>
+        <Link
+          to={`/presensi/${data.id}`}
+          className="flex w-full text-sm justify-start p-2 pl-4 gap-2 rounded-md hover:bg-slate-100">
+          <CalendarFold className="h-4 w-4" /> Detail
+        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -14,4 +14,16 @@ const findAllJadwalMatkul = async () => {
   }
 };
 
-export { findAllJadwalMatkul };
+const findByIdJadwalMatkul = async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/jadwal-matkul/${id}`, {
+      headers: { "Content-Type": "application/json" },
+    });
+
+    return response.data.data;
+  } catch (error) {
+    console.error("Error fetching jadwal matkul by id:", error.message);
+  }
+};
+
+export default { findAllJadwalMatkul, findByIdJadwalMatkul };
