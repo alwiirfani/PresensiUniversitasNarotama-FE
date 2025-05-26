@@ -6,7 +6,10 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Toaster } from "../components/ui/sonner";
 
-import { loginAuthMahasiswa } from "@/services/auth/auth-service";
+import {
+  loginAuthDosen,
+  loginAuthMahasiswa,
+} from "@/services/auth/auth-service";
 import { titleChange } from "@/services/title-manager";
 import LoginForm from "@/components/auth/LoginForm";
 import { useAuth } from "@/contexts/AuthContext";
@@ -48,9 +51,12 @@ const LoginLayout = () => {
       if (data.id.length === 8) {
         response = await loginAuthMahasiswa(data);
       } else if (data.id.length === 5) {
-        response;
+        response = await loginAuthDosen(data);
       } else {
-        response;
+        toast.error("ID tidak valid", {
+          id: toastId,
+          duration: 3000,
+        });
       }
 
       toast.success("Login Berhasil", {

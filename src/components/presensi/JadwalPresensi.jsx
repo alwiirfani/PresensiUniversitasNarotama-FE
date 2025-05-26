@@ -3,11 +3,11 @@ import SkeletonTableClient from "../SkeletonTableClient";
 import JadwalPresensiClient from "./data-presensi/client";
 import mahasiswaService from "@/services/mahasiswa/mahasiswa-service";
 
-const JadwalPresensi = ({ id }) => {
+const JadwalPresensi = ({ id, role }) => {
   const [jadwalPresensi, setJadwalPresensi] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchJadwalPresensi = async () => {
+  const fetchJadwalPresensiMahasiswa = async () => {
     try {
       setIsLoading(true);
 
@@ -39,8 +39,14 @@ const JadwalPresensi = ({ id }) => {
     }
   };
 
+  const fetchJadwalPresensiDosen = async () => {};
+
   useEffect(() => {
-    fetchJadwalPresensi();
+    if (role === "mahasiswa") {
+      fetchJadwalPresensiMahasiswa();
+    } else {
+      fetchJadwalPresensiDosen();
+    }
   }, []);
 
   return (

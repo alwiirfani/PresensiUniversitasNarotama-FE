@@ -10,6 +10,12 @@ const loginAuthDosen = async (credentials) => {
       withCredentials: true,
     });
 
+    if (response.data.data.accessToken) {
+      verifyApi.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${response.data.data.accessToken}`;
+    }
+
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || "Login Failed");

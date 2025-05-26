@@ -21,7 +21,7 @@ const PresensiLayout = () => {
     <div className="container flex flex-col">
       {/* Jadwal Presensi anda hari ini */}
       <div className="w-full mt-4 sm:mt-6">
-        {user && user.id && <JadwalPresensi id={user.id} />}
+        {user && user.id && <JadwalPresensi id={user.id} role={user.role} />}
       </div>
     </div>
   );
