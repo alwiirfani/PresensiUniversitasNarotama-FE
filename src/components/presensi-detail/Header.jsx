@@ -19,7 +19,7 @@ const Header = ({ role, qrData }) => {
         Detail Presensi
       </h1>
       <div className="w-[30%] sm:w-[10%] flex items-center justify-end mx-2">
-        {role === "maha" ? (
+        {role === "mahasiswa" ? (
           <>
             <button
               className="flex items-center justify-center h-12 w-12 sm:h-20 sm:w-20 border border-border rounded-lg hover:bg-slate-100"
