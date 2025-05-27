@@ -25,7 +25,9 @@ const ProfileCard = ({ id, nama, role }) => {
       <CardHeader>
         <div className="flex w-full justify-between">
           <div className="flex flex-col justify-center">
-            <CardTitle>{nama}</CardTitle>
+            <CardTitle className="text-base sm:text-lg">
+              {nama.slice(0, 22)} ...
+            </CardTitle>
             <CardDescription>{role}</CardDescription>
           </div>
 

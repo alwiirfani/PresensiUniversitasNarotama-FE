@@ -50,25 +50,20 @@ const LoginLayout = () => {
 
       if (data.id.length === 8) {
         response = await loginAuthMahasiswa(data);
-      } else if (data.id.length === 5) {
-        response = await loginAuthDosen(data);
       } else {
-        toast.error("ID tidak valid", {
-          id: toastId,
-          duration: 3000,
-        });
+        response = await loginAuthDosen(data);
       }
+
+      login({
+        id: data.id,
+        nama: response.data.nama,
+        role: response.data.role,
+        accessToken: response.data.accessToken,
+      });
 
       toast.success("Login Berhasil", {
         id: toastId,
         duration: 3000,
-      });
-
-      login({
-        id: response.data.nim,
-        nama: response.data.nama,
-        role: response.data.role,
-        accessToken: response.data.accessToken,
       });
 
       console.log(response.data);

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 const ProfileLayout = () => {
   const [user, setUser] = useState({});
-  const [tabValue, setTabValue] = useState("mahasiswa");
+  const [tabValue, setTabValue] = useState("");
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -13,11 +13,7 @@ const ProfileLayout = () => {
       const parsedUser = JSON.parse(storedUser);
       setUser(parsedUser);
 
-      if (parsedUser.role === "mahasiswa") {
-        setTabValue("mahasiswa");
-      } else if (parsedUser.role === "dosen") {
-        setTabValue("dosen");
-      }
+      setTabValue(parsedUser.role);
     }
   }, []);
 
