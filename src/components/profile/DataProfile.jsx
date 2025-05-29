@@ -3,9 +3,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Card, CardContent } from "../ui/card";
 import mahasiswaService from "@/services/mahasiswa/mahasiswa-service";
 import FieldSet from "./FieldSet";
-import { BookKey, Home, IdCard, Mail, PersonStanding } from "lucide-react";
 import SkeletonDataProfile from "./SkeletonDataProfile";
 import dosenService from "@/services/dosen/dosen-service";
+import { cn } from "@/lib/utils";
+import { dataAccountList, dataAkademikList } from "./DataAccountList";
 
 const DataProfile = ({ user, tabValue }) => {
   const [userData, setUserData] = useState({});
@@ -32,6 +33,9 @@ const DataProfile = ({ user, tabValue }) => {
     }
   };
 
+  const fieldSetAccountList = dataAccountList(tabValue, userData);
+  const fieldSetAkademikList = dataAkademikList(userData);
+
   useEffect(() => {
     if (user) handleDataProfile();
 
@@ -42,11 +46,17 @@ const DataProfile = ({ user, tabValue }) => {
     <div className="flex w-full justify-center items-center">
       {tabValue && (
         <Tabs defaultValue={tabValue} className="w-11/12">
-          <TabsList className="grid w-full grid-cols-2 border border-border shadow-md">
+          <TabsList
+            className={cn(
+              "grid w-full border border-border shadow-md",
+              tabValue === "mahasiswa" ? "grid-cols-2" : "grid-cols-1"
+            )}>
             <TabsTrigger value={tabValue}>
               {tabValue === "mahasiswa" ? "Mahasiswa" : "Dosen"}
             </TabsTrigger>
-            <TabsTrigger value="akademik">Akademik</TabsTrigger>
+            {tabValue === "mahasiswa" && (
+              <TabsTrigger value="akademik">Akademik</TabsTrigger>
+            )}
           </TabsList>
           <TabsContent value={tabValue}>
             <Card className="h-[26.6rem] sm:h-[34rem] shadow-md overflow-y-scroll">
@@ -55,28 +65,15 @@ const DataProfile = ({ user, tabValue }) => {
                   <SkeletonDataProfile />
                 ) : (
                   <>
-                    <FieldSet
-                      label={tabValue === "mahasiswa" ? "NIM" : "NIP"}
-                      value={
-                        tabValue === "mahasiswa" ? userData.nim : userData.nip
-                      }
-                      icon={<IdCard className="h-4 w-4" />}
-                    />
-                    <FieldSet
-                      label={"Nama"}
-                      value={userData.nama}
-                      icon={<PersonStanding className="h-4 w-4" />}
-                    />
-                    <FieldSet
-                      label={"Email"}
-                      value={userData.email}
-                      icon={<Mail className="h-4 w-4" />}
-                    />
-                    <FieldSet
-                      label={"Alamat"}
-                      value={userData.alamat}
-                      icon={<Home className="h-4 w-4" />}
-                    />
+                    {userData &&
+                      fieldSetAccountList.map((item, index) => (
+                        <FieldSet
+                          key={index}
+                          label={item.label}
+                          value={item.value}
+                          icon={item.icon}
+                        />
+                      ))}
                   </>
                 )}
               </CardContent>
@@ -90,12 +87,15 @@ const DataProfile = ({ user, tabValue }) => {
                     <SkeletonDataProfile />
                   ) : (
                     <>
-                      <FieldSet
-                        label={"Program Studi"}
-                        value={userData.namaProdi}
-                        icon={<BookKey className="h-4 w-4" />}
-                      />
-                      <FieldSet label={"IPK"} value={0} />
+                      {userData &&
+                        fieldSetAkademikList.map((item, index) => (
+                          <FieldSet
+                            key={index}
+                            label={item.label}
+                            value={item.value}
+                            icon={item.icon}
+                          />
+                        ))}
                     </>
                   )}
                 </CardContent>

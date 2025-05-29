@@ -17,7 +17,7 @@ const PresensiDosenClient = ({ data }) => {
         <Separator className="w-full sm:w-3/4" />
       </div>
       <DataTable
-        inputSearch={"dosen"}
+        inputSearch={["dosen/prodi"]}
         data={data}
         columns={columns}
         searchKey={["nama"]}
