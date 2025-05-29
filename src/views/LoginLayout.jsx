@@ -28,6 +28,7 @@ const LoginLayout = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   // React Hook Form for login
   const loginForm = useForm({
@@ -66,18 +67,18 @@ const LoginLayout = () => {
         duration: 3000,
       });
 
-      console.log(response.data);
-      console.log(data);
-
       setIsLoading(false);
       setTimeout(() => navigate("/"), 3000);
     } catch (error) {
-      toast.error(error.response?.data?.message || "Login Gagal", {
+      const errorMessage =
+        error?.response?.data?.message || error?.message || "Login Gagal";
+
+      toast.error(errorMessage, {
         id: toastId,
-        duration: 3000,
+        duration: 5000,
       });
 
-      console.error("Error logging in:", error);
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -86,7 +87,9 @@ const LoginLayout = () => {
   // Handle login form error
   const onError = (errors) => {
     console.error("Form errors:", errors);
-    toast.warning("Harap perbaiki error pada form sebelum submit");
+    toast.warning("Harap isi form dengan benar", {
+      duration: 3000,
+    });
   };
 
   // title
@@ -98,7 +101,7 @@ const LoginLayout = () => {
       <LoginForm
         form={loginForm}
         onSubmit={onSubmit}
-        onError={onError}
+        onError={onError || error}
         isLoading={isLoading}
       />
     </div>
