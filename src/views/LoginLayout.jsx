@@ -104,6 +104,27 @@ const LoginLayout = () => {
         onError={onError || error}
         isLoading={isLoading}
       />
+
+      <div className="flex flex-col w-full items-center mt-4">
+        <h2 className="text-xl font-bold">Akun Demo</h2>
+        <hr className="w-1/2" />
+        <p className="text-base font-semibold text-muted-foreground">
+          Login Mahasiswa
+        </p>
+        <hr className="w-1/4" />
+        <p className="text-sm">NIM : 87654321</p>
+        <p className="text-sm">Pwd : testing123</p>
+
+        <hr className="w-1/2" />
+        <p className="text-base font-semibold text-muted-foreground">
+          Login Dosen
+        </p>
+        <hr className="w-1/4" />
+        <p className="text-sm">NIP : 12345</p>
+        <p className="text-sm">Pwd : dosen123</p>
+
+        <hr className="w-1/2" />
+      </div>
     </div>
   );
 };
