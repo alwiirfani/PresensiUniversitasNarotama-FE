@@ -25,11 +25,11 @@ const HomeLayout = () => {
       <div className="w-full items-center justify-center">
         {user && user.nama ? (
           <h1 className="mt-3 text-3xl text-center break-words">
-            Welcome, {user.nama} &#129299;
+            Welcome, {user.nama} &#128075;
           </h1>
         ) : (
           <h1 className=" mt-3 text-xl sm:text-3xl text-center break-words">
-            Silahkan login terlebih dahulu untuk melakukan Presensi &#129300;
+            Silahkan login terlebih dahulu untuk melakukan Presensi &#xf1d8;
           </h1>
         )}
       </div>
